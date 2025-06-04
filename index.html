@@ -26,4 +26,39 @@ model-viewer {
     camera-controls>
   </model-viewer>
 </body>
+<!-- Hier unten das JavaScript einfügen -->
+  <script>
+    const modelViewer = document.getElementById('myModelViewer');
+
+    // Min und Max Winkel in Grad
+    const minAzimuth = -20;
+    const maxAzimuth = 20;
+    const minElevation = 40;
+    const maxElevation = 80;
+
+    // Hilfsfunktion: Grad in Bogenmaß
+    function degToRad(deg) {
+      return deg * Math.PI / 180;
+    }
+    // Hilfsfunktion: Bogenmaß in Grad
+    function radToDeg(rad) {
+      return rad * 180 / Math.PI;
+    }
+
+    modelViewer.addEventListener('camera-change', () => {
+      let orbit = modelViewer.getCameraOrbit();
+
+      let azimuth = radToDeg(orbit.theta);
+      let elevation = radToDeg(orbit.phi);
+      let radius = orbit.radius;
+
+      // Winkel begrenzen
+      azimuth = Math.min(maxAzimuth, Math.max(minAzimuth, azimuth));
+      elevation = Math.min(maxElevation, Math.max(minElevation, elevation));
+
+      // Kamera zurücksetzen
+      modelViewer.cameraOrbit = `${azimuth}deg ${elevation}deg ${radius}m`;
+    });
+  </script>
+</body>
 </html>
