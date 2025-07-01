@@ -24,29 +24,8 @@
   <model-viewer
     src="snowflake_virtualoffice_3d-titel.glb"
     alt="3D Virtual Office"
-    camera-controls
     interaction-prompt="none"
     camera-orbit="0deg 75deg auto">
   </model-viewer>
-
-  <script>
-    const modelViewer = document.querySelector('model-viewer');
-
-    modelViewer.addEventListener('camera-change', () => {
-      let orbit = modelViewer.getCameraOrbit();
-      let [azimuth, elevation, radius] = orbit;
-
-      azimuth = THREE.MathUtils.radToDeg(azimuth);
-      elevation = THREE.MathUtils.radToDeg(elevation);
-
-      azimuth = Math.min(Math.max(azimuth, -45), 45);
-      elevation = Math.min(Math.max(elevation, 30), 80);
-
-      azimuth = THREE.MathUtils.degToRad(azimuth);
-      elevation = THREE.MathUtils.degToRad(elevation);
-
-      modelViewer.cameraOrbit = `${azimuth}rad ${elevation}rad ${radius}m`;
-    });
-  </script>
 </body>
 </html>
