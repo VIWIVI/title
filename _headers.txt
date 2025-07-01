@@ -1,2 +1,0 @@
-/snowflake_virtualoffice_3d-titel.glb
-  Content-Type: model/gltf-binary
